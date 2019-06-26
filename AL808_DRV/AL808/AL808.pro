@@ -26,13 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         AL808.cpp \
     ../../BaseDrv/TemBase.cpp \
-    SetPortDialog.cpp
+    SetPortDialog.cpp \
 
 HEADERS += \
         AL808.h \
         al808_global.h \ 
     ../../BaseDrv/TemBase.h \
-    SetPortDialog.h
+    SetPortDialog.h \
 
 unix {
     target.path = /usr/lib

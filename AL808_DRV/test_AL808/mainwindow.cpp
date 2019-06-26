@@ -7,8 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    AL808 *al808 = new AL808();
-     al808->SetupWindows();
+    al808 = new AL808();
 
 }
 
@@ -19,20 +18,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_getPV_clicked()
 {
-
+    al808->getPV();
 }
 
 void MainWindow::on_pushButton_Connect_clicked()
 {
-
+    al808->Temconnect();
 }
 
 void MainWindow::on_pushButton_DisConnect_clicked()
 {
-
+    al808->Temdisconnect();
 }
 
 void MainWindow::on_pushButton_ShowSetup_clicked()
 {
-
+    qDebug()<<"点击Setup";
+    al808->Set_Al808Setup();
 }

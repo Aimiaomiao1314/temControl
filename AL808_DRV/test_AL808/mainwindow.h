@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "../AL808/AL808.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,7 @@ private slots:
     void on_pushButton_ShowSetup_clicked();
 
 private:
+    AL808 *al808;
     Ui::MainWindow *ui;
 };
 

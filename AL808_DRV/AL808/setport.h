@@ -1,20 +1,14 @@
-#ifndef SETPORTDIALOG_H
-#define SETPORTDIALOG_H
+#ifndef SETPORT_H
+#define SETPORT_H
 
-#include <QDialog>
+#include <QObject>
 #include <QSerialPort>
 
-namespace Ui {
-class SetPortDialog;
-}
-
-class SetPortDialog : public QDialog
+class SetPort : public QObject
 {
     Q_OBJECT
-
 public:
-    explicit SetPortDialog(QWidget *parent = 0);
-    ~SetPortDialog();
+    explicit SetPort(QObject *parent = nullptr);
     struct BaudRateBit
     {
         QSerialPort::BaudRate Baudbits;
@@ -24,16 +18,13 @@ public:
     QString com=NULL;
     QSerialPort::BaudRate baudrate;
     QList<struct BaudRateBit> BaudRateList;
-    void ReadConfig();
-private:
-    Ui::SetPortDialog *ui;
 private slots:
 
     void RefreshCombox();
     void RefreshBaudratebox();
     void on_ps_cancel_clicked();
     void on_ps_ok_clicked();
-
+    void ReadConfig();
 };
 
-#endif // SETPORTDIALOG_H
+#endif // SETPORT_H
