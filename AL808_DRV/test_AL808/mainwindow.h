@@ -36,6 +36,7 @@ private:
     Ui::MainWindow *ui;
 signals:
    void groove();
+   void TryConnect();
 };
 
 #endif // MAINWINDOW_H

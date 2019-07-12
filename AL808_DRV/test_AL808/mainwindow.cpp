@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     al808 = new AL808();
     connect(this,SIGNAL(groove()),al808,SLOT(ConnectTest()));
+    connect(this,SIGNAL(TryConnect()),al808,SLOT(Temconnect()));
 
 }
 
@@ -26,7 +27,7 @@ void MainWindow::on_pushButton_getPV_clicked()
 
 void MainWindow::on_pushButton_Connect_clicked()
 {
-    al808->Temconnect();
+    emit TryConnect();
 }
 
 void MainWindow::on_pushButton_DisConnect_clicked()
@@ -41,9 +42,7 @@ void MainWindow::on_pushButton_ShowSetup_clicked()
 
 void MainWindow::on_Btn_SearchAdress_clicked()
 {
-
     al808->SeachAdress(0);
-
 }
 
 void MainWindow::on_pushButton_SetSL_clicked()

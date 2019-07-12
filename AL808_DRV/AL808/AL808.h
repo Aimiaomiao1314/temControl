@@ -79,8 +79,7 @@ public:
     double setSP() override;
     double setSL(QString) override;
 
-    void Temconnect() override;
-    void Temdisconnect() override;
+
     int getDrvVersion() override;
 
     void Set_Al808Setup();
@@ -142,6 +141,8 @@ private slots:
     void timeoutAddr();
 
 public slots:
+    void Temconnect() override;
+    void Temdisconnect() override;
     void SeachAdress(int);
     void ConnectTest();
 signals:
