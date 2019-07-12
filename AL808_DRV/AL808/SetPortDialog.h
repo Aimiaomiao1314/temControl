@@ -25,9 +25,12 @@ public:
     QSerialPort::BaudRate baudrate;
     QList<struct BaudRateBit> BaudRateList;
     void ReadConfig();
+    QString ErgodicAdress(int);
+    int addr=0;
 private:
     Ui::SetPortDialog *ui;
 private slots:
+
 
     void RefreshCombox();
     void RefreshBaudratebox();

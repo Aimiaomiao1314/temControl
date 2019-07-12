@@ -77,6 +77,7 @@ void SetPortDialog::ReadConfig()  //读配置文件
     app_config= new QSettings (ini_path, QSettings::IniFormat);//生成配置文件
     app_config->beginGroup("Serilport");
     com = app_config->value("ComPort").toString(); //读端口号
+    addr = app_config->value("Address").toInt();   //读通讯地址
     for(int i=0;i<BaudRateList.size();i++)         //读波特率
     {
         if(app_config->value("BaudRate").toString()==BaudRateList.at(i).NameBaud)
@@ -86,5 +87,15 @@ void SetPortDialog::ReadConfig()  //读配置文件
         }
     }
     app_config->endGroup();
+}
+
+QString SetPortDialog::ErgodicAdress(int i)
+{
+
+  QString temp=QString("%1").arg(i, 2, 10, QChar('0'));
+  QString Adress1=temp.at(0);
+  QString Adress2=temp.at(1);
+  QString Adress=Adress1+Adress1+Adress2+Adress2;
+  return Adress;
 
 }

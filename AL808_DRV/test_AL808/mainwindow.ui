@@ -66,6 +66,45 @@
      <string>ShowSetup</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="Btn_SearchAdress">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>170</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SearchAdress</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_SetSL">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>setSL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Groove">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>50</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connectgroove</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

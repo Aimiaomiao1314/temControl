@@ -25,9 +25,17 @@ private slots:
 
     void on_pushButton_ShowSetup_clicked();
 
+    void on_Btn_SearchAdress_clicked();
+
+    void on_pushButton_SetSL_clicked();
+
+    void on_pushButton_Groove_clicked();
+
 private:
     AL808 *al808;
     Ui::MainWindow *ui;
+signals:
+   void groove();
 };
 
 #endif // MAINWINDOW_H
