@@ -1,10 +1,10 @@
-﻿#include "AL808.h"
-#include <QDebug>
-#include "SetPortDialog.h"
+﻿#include <QDebug>
 #include <QTimer>
-#include <QMessageBox>
 #include <QThread>
+#include <QMessageBox>
 #include <QSettings>
+#include "AL808.h"
+#include "SetPortDialog.h"
 
 AL808::AL808()
 {
@@ -39,6 +39,10 @@ AL808::AL808()
     timer= new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(timeoutAddr()));
 
+//    QThread *newthread = new  QThread;
+//    this->moveToThread(newthread);
+//    newthread->start();
+//    qDebug()<<"当前线程："<<newthread->currentThread();
 }
 void AL808::Temconnect()
 {
@@ -146,11 +150,11 @@ QString AL808::StartAdress(int i)
 void AL808::ReadData()
 {
     if(Readstate==0)
-    ReceiveData=Sp->readAll();           //读取所有数据
+        ReceiveData=Sp->readAll();           //读取所有数据
     CommandDistinction();
 
     if(Readstate==1)
-    ReceiveData=Sp->readAll();
+        ReceiveData=Sp->readAll();
     Successjudge();
 
     if(Readstate==3)

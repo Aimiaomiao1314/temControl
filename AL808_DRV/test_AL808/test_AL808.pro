@@ -6,7 +6,7 @@
 
 QT       += core gui
 QT       += serialport
-LIBS     += F:\Qtworkplace\build-temControl-Desktop_Qt_5_9_6_MinGW_32bit-Debug\AL808_DRV\AL808\debug\AL808.dll
+LIBS     += C:\Users\Luna\Desktop\Qtworkplace\build-temControl-Desktop_Qt_5_9_6_MinGW_32bit-Debug\AL808_DRV\AL808\debug\AL808.dll
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = test_AL808

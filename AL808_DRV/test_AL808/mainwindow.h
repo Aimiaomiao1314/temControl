@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "../AL808/AL808.h"
+#include <QThread>
 
 namespace Ui {
 class MainWindow;
@@ -34,6 +35,7 @@ private slots:
 private:
     AL808 *al808;
     Ui::MainWindow *ui;
+    QThread *thread;
 signals:
    void groove();
    void TryConnect();

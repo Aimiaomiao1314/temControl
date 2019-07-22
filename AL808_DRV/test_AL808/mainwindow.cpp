@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(groove()),al808,SLOT(ConnectTest()));
     connect(this,SIGNAL(TryConnect()),al808,SLOT(Temconnect()));
 
+//    thread =new QThread();
+//    al808->moveToThread(thread);
+//    thread->start();
 }
 
 MainWindow::~MainWindow()

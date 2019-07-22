@@ -27,12 +27,14 @@ SOURCES += \
         AL808.cpp \
     ../../BaseDrv/TemBase.cpp \
     SetPortDialog.cpp \
+#    mythread.cpp
 
 HEADERS += \
         AL808.h \
         al808_global.h \ 
     ../../BaseDrv/TemBase.h \
     SetPortDialog.h \
+#    mythread.h
 
 unix {
     target.path = /usr/lib

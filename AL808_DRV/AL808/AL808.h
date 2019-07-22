@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QQueue>
+#include <QThread>
 
 #define TESTDLLSHARED_EXPORT __declspec(dllexport)
 #ifdef TESTDLLSHARED_EXPORT
@@ -145,6 +146,8 @@ public slots:
     void Temdisconnect() override;
     void SeachAdress(int);
     void ConnectTest();
+protected:
+    void run();
 signals:
     void StartSearch();
 };
