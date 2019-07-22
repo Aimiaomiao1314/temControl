@@ -42,7 +42,8 @@ AL808::AL808()
 //    QThread *newthread = new  QThread;
 //    this->moveToThread(newthread);
 //    newthread->start();
-//    qDebug()<<"当前线程："<<newthread->currentThread();
+//    qDebug()<<"123123123当前线程："<<newthread->currentThread();
+
 }
 void AL808::Temconnect()
 {
