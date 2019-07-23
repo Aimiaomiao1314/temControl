@@ -12,10 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(groove()),al808,SLOT(ConnectTest()));
     connect(this,SIGNAL(TryConnect()),al808,SLOT(Temconnect()));
 
-    thread =new QThread();
-    al808->moveToThread(thread);
-    thread->start();
-    qDebug()<<"thread线程: "<< thread->currentThreadId();
+//    thread =new QThread();
+//    al808->moveToThread(thread);
+//    thread->start();
+
 }
 
 MainWindow::~MainWindow()
@@ -42,11 +42,6 @@ void MainWindow::on_pushButton_DisConnect_clicked()
 void MainWindow::on_pushButton_ShowSetup_clicked()
 {
     al808->Set_Al808Setup();
-}
-
-void MainWindow::on_Btn_SearchAdress_clicked()
-{
-    al808->SeachAdress(0);
 }
 
 void MainWindow::on_pushButton_SetSL_clicked()

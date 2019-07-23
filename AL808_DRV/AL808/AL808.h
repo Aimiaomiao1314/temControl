@@ -117,14 +117,12 @@ private:
     double ValDA=0;
     QString Adress=NULL;
     int Readstate=0;
-    QTimer *timer;
 
     QVector <struct StrofCmdID> ParameterList;
     QQueue<QString> queue;
 
     void SendAllLists(QString);//发送队列
     void ReadMatch(QByteArray , double);//赋值
-    void ConfirmAdress();
     void Successjudge();
 
 
@@ -133,18 +131,15 @@ private slots:
     void ReadData();//读取数据
     void InsertLists();//插入队列等待发送
     void CommandDistinction();//等待完整数据
-    QString StartAdress(int);
 
     bool SeekStart();//寻找起始位
     bool SeekEnd();//寻找终止位
     double XORTest();//数据处理
     char BCC(QByteArray);//异或校验
-    void timeoutAddr();
 
 public slots:
     void Temconnect() override;
     void Temdisconnect() override;
-    void SeachAdress(int);
     void ConnectTest();
 protected:
     void run();

@@ -26,8 +26,6 @@ private slots:
 
     void on_pushButton_ShowSetup_clicked();
 
-    void on_Btn_SearchAdress_clicked();
-
     void on_pushButton_SetSL_clicked();
 
     void on_pushButton_Groove_clicked();

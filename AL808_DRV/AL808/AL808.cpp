@@ -1,6 +1,6 @@
 ﻿#include <QDebug>
-#include <QTimer>
 #include <QThread>
+#include <QTimer>
 #include <QMessageBox>
 #include <QSettings>
 #include "AL808.h"
@@ -35,9 +35,6 @@ AL808::AL808()
     Sp_Setup=new SetPortDialog();
     connect(Sp,SIGNAL(readyRead()),this,SLOT(ReadData())); //接收到数据处理;
     connect(this,SIGNAL(StartSearch()),this,SLOT(InsertLists()));//开始搜索
-
-    timer= new QTimer();
-    connect(timer, SIGNAL(timeout()), this, SLOT(timeoutAddr()));
 
 //    QThread *newthread = new  QThread;
 //    this->moveToThread(newthread);
@@ -113,40 +110,10 @@ int AL808::writeData(char *data, int size)//用于发送数据
     qDebug()<<"发送成功";
     return len;
 }
-void AL808::SeachAdress(int i)
-{
-    if(Sp->isOpen())
-    {
-        Sp_Setup->addr=i;
-        Readstate=3;
-        StartAdress(i);
-        timer->start(500);
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("请先连接端口");
-        msgBox.exec();
-    }
-}
 
 void AL808::ConnectTest()
 {
     qDebug()<<"DLL槽连接成功";
-}
-
-QString AL808::StartAdress(int i)
-{
-    char ChSTX=4;   //正文开始
-    char ChETX=5;   //正文结束
-    QString Adresstemp=Sp_Setup->ErgodicAdress(i);
-    QString PVSealedText=QString("%1").arg(ChSTX)+Adresstemp+"PV"+ QString("%1").arg(ChETX);  //命令字符串
-    qDebug()<<"发送的消息为："<<PVSealedText;
-    QByteArray byte = PVSealedText.toLatin1();
-    char *ch=byte.data();
-
-    writeData(ch,strlen(ch));
-    return Adresstemp;
 }
 void AL808::ReadData()
 {
@@ -157,10 +124,6 @@ void AL808::ReadData()
     if(Readstate==1)
         ReceiveData=Sp->readAll();
     Successjudge();
-
-    if(Readstate==3)
-        ConfirmAdress();
-
 
 }
 void AL808::Successjudge()
@@ -245,18 +208,6 @@ char AL808::BCC(QByteArray ba) //异或校验过程
     }
     return result;
 }
-
-void AL808::timeoutAddr()
-{
-    timer->stop();
-    if(Sp_Setup->addr>20)
-    {
-        qDebug()<<"未找到地址";
-        Sp_Setup->addr=0;
-        return;
-    }
-    SeachAdress(++Sp_Setup->addr);
-}
 bool AL808::SeekEnd()    //找终止位
 {
     char ChETX=3;   //正文结束
@@ -271,20 +222,6 @@ bool AL808::SeekEnd()    //找终止位
     }
     return false;
 }
-void AL808::ConfirmAdress()
-{
-    Readstate=0;
-    qDebug()<<"确认地址:"<<Sp_Setup->addr;
-    timer->stop();
-
-    QString ini_path= "configuration.ini";
-    QSettings* app_config;
-    app_config= new QSettings (ini_path, QSettings::IniFormat);//生成配置文件
-    app_config->beginGroup("Serilport");       //端口号内容写入
-    app_config->setValue("Address",Sp_Setup->addr);
-    app_config->endGroup();
-}
-
 
 void AL808::InsertLists()//插入队列
 {
