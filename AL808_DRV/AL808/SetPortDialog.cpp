@@ -46,7 +46,7 @@ void SetPortDialog::RefreshBaudratebox() //添加波特率列表
     }
 }
 
-void SetPortDialog::on_ps_ok_clicked() //点击OK
+void SetPortDialog::on_ps_ok_clicked() //点击OK , 写配置文件
 {
     QString ini_path;
     QSettings* app_config;
@@ -56,6 +56,7 @@ void SetPortDialog::on_ps_ok_clicked() //点击OK
     app_config->beginGroup("Serilport");       //端口号内容写入
     app_config->setValue("ComPort",ui->cbox_com->currentText());
     app_config->setValue("BaudRate",ui->cbox_baudrate->currentText());
+    app_config->setValue("Address",ui->cbox_sp_communication->currentText());
     app_config->endGroup();
     this->close();
 }
@@ -64,8 +65,6 @@ void SetPortDialog::on_ps_cancel_clicked() //点击Cancel
 {
     this->close();
 }
-
-
 
 void SetPortDialog::ReadConfig()  //读配置文件
 {
@@ -77,7 +76,7 @@ void SetPortDialog::ReadConfig()  //读配置文件
     app_config= new QSettings (ini_path, QSettings::IniFormat);//生成配置文件
     app_config->beginGroup("Serilport");
     com = app_config->value("ComPort").toString(); //读端口号
-    addr = app_config->value("Address").toInt();   //读通讯地址
+    addr = app_config->value("Address").toInt();       //读通讯地址
     for(int i=0;i<BaudRateList.size();i++)         //读波特率
     {
         if(app_config->value("BaudRate").toString()==BaudRateList.at(i).NameBaud)

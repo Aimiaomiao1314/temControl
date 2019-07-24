@@ -93,6 +93,7 @@ private:
     QByteArray ReceiveData=NULL;
     QByteArray Buffer=NULL;
     QString FinValue=NULL;
+    QString Address=NULL;
 
     double ValPV=0;
     double ValOP=0;

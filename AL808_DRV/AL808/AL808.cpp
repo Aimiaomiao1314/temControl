@@ -36,10 +36,10 @@ AL808::AL808()
     connect(Sp,SIGNAL(readyRead()),this,SLOT(ReadData())); //接收到数据处理;
     connect(this,SIGNAL(StartSearch()),this,SLOT(InsertLists()));//开始搜索
 
-//    QThread *newthread = new  QThread;
-//    this->moveToThread(newthread);
-//    newthread->start();
-//    qDebug()<<"123123123当前线程："<<newthread->currentThread();
+    //    QThread *newthread = new  QThread;
+    //    this->moveToThread(newthread);
+    //    newthread->start();
+    //    qDebug()<<"123123123当前线程："<<newthread->currentThread();
 
 }
 void AL808::Temconnect()
@@ -61,6 +61,8 @@ void AL808::Temconnect()
         Sp->setFlowControl(QSerialPort::NoFlowControl);//流控制
         Sp->setReadBufferSize(0);//设置缓冲区大小
         Sp->open(QSerialPort::ReadWrite);
+        Address=Sp_Setup->ErgodicAdress(Sp_Setup->addr); // 封装地址
+
         if(Sp->isOpen())
         {
             qDebug()<<"端口号:"<<Sp->portName();
@@ -68,6 +70,7 @@ void AL808::Temconnect()
             qDebug()<<"奇偶性:"<<Sp->parity();
             qDebug()<<"数据位:"<<Sp->dataBits();
             qDebug()<<"停止位:"<<Sp->stopBits();
+            qDebug()<<"通讯地址:"<<Address;
             emit StartSearch();
         }
     }
@@ -229,8 +232,6 @@ void AL808::InsertLists()//插入队列
     {
         char ChSTX=4;     //正文开始
         char ChETX=5;     //正文结束
-
-        QString Address=Sp_Setup->ErgodicAdress(Sp_Setup->addr);
         QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);  //命令字符串
         QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);  //命令字符串
         QString SPSealedText=QString("%1").arg(ChSTX)+Address+"SP"+ QString("%1").arg(ChETX);  //命令字符串
