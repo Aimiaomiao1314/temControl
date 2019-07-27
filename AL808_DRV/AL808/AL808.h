@@ -94,6 +94,7 @@ private:
     QByteArray Buffer=NULL;
     QString FinValue=NULL;
     QString Address=NULL;
+    bool isbusy=0;
 
     double ValPV=0;
     double ValOP=0;
@@ -125,6 +126,7 @@ private:
     void SendAllLists(QString);//发送队列
     void ReadMatch(QByteArray , double);//赋值
     void Successjudge();
+    bool judgestate();
 
 
 private slots:

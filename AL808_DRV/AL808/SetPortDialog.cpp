@@ -77,7 +77,7 @@ void SetPortDialog::ReadConfig()  //读配置文件
     app_config->beginGroup("Serilport");
     com = app_config->value("ComPort").toString(); //读端口号
     addr = app_config->value("Address").toInt();       //读通讯地址
-    for(int i=0;i<BaudRateList.size();i++)         //读波特率
+    for(int i=0;i<BaudRateList.size();i++)                      //读波特率
     {
         if(app_config->value("BaudRate").toString()==BaudRateList.at(i).NameBaud)
         {
