@@ -5,11 +5,11 @@
 #include <QtSerialPort/QSerialPort>
 #include "../../BaseDrv/TemBase.h"
 #include "SetPortDialog.h"
+#include "form.h"
 #include <QDebug>
 #include <QObject>
 #include <QQueue>
 #include <QThread>
-
 #define TESTDLLSHARED_EXPORT __declspec(dllexport)
 #ifdef TESTDLLSHARED_EXPORT
 #else
@@ -75,10 +75,10 @@ public:
     double getLB();
     double getDA();
 
-    double setPV() override;
-    double setOP() override;
-    double setSP() override;
-    double setSL(QString) override;
+    void setPV(QString) override;
+    void setOP(QString) override;
+    void setSP(QString) override;
+    void setSL(QString) override;
 
 
     int getDrvVersion() override;
@@ -88,6 +88,7 @@ public:
 
     QSerialPort *Sp;
     SetPortDialog *Sp_Setup;
+    Form *form;
 
 private:
     QByteArray ReceiveData=NULL;
@@ -127,6 +128,7 @@ private:
     void ReadMatch(QByteArray , double);//赋值
     void Successjudge();
     bool judgestate();
+    void SetContinue(QString,QString);
 
 
 private slots:
@@ -140,12 +142,14 @@ private slots:
     double XORTest();//数据处理
     char BCC(QByteArray);//异或校验
 
+    void StartInsert();
+
 public slots:
     void Temconnect() override;
     void Temdisconnect() override;
     void ConnectTest();
 protected:
-    void run();
+
 signals:
     void StartSearch();
 };

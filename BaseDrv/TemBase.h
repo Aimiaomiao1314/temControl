@@ -18,10 +18,10 @@ public:
     virtual double getSP() = 0;
     virtual double getSL() = 0;
 
-    virtual double setPV() = 0;
-    virtual double setOP() = 0;
-    virtual double setSP() = 0;
-    virtual double setSL(QString) = 0;
+    virtual void setPV(QString) = 0;
+    virtual void setOP(QString) = 0;
+    virtual void setSP(QString) = 0;
+    virtual void setSL(QString) = 0;
 
     virtual void Temconnect() = 0;
     virtual void Temdisconnect() = 0;

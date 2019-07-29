@@ -1,16 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-06-12T11:09:57
+# Project created by QtCreator 2019-07-27T13:17:06
 #
 #-------------------------------------------------
 
-QT       += widgets dbus
-QT       += serialport
+QT       += core gui
 
-TARGET = AL808
-TEMPLATE = lib
-DEFINES += AL808_LIBRARY
-CONFIG  += dll
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = MainForm
+TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -23,26 +22,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
 SOURCES += \
-        AL808.cpp \
-    ../../BaseDrv/TemBase.cpp \
-    SetPortDialog.cpp \
-#    mythread.cpp
-    form.cpp
+        main.cpp \
+        mainform.cpp
 
 HEADERS += \
-        AL808.h \
-        al808_global.h \ 
-    ../../BaseDrv/TemBase.h \
-    SetPortDialog.h \
-#    mythread.h
-    form.h
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+        mainform.h
 
 FORMS += \
-    SetPortDialog.ui \
-    form.ui
+        mainform.ui

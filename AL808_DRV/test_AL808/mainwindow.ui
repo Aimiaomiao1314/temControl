@@ -79,17 +79,43 @@
      <string>setSL</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Groove">
+   <widget class="QPushButton" name="pushButton_SetOP">
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>50</y>
-      <width>111</width>
+      <y>90</y>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Connectgroove</string>
+     <string>setOP</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_SetSP">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>130</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>setSP</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_SetPV">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>50</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>setPV</string>
     </property>
    </widget>
   </widget>

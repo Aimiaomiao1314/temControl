@@ -28,14 +28,11 @@ private slots:
 
     void on_pushButton_SetSL_clicked();
 
-    void on_pushButton_Groove_clicked();
-
 private:
     AL808 *al808;
     Ui::MainWindow *ui;
     QThread *thread;
 signals:
-   void groove();
    void TryConnect();
 };
 

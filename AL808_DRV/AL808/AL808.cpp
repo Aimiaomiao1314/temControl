@@ -33,13 +33,14 @@ AL808::AL808()
 
     Sp=new QSerialPort();
     Sp_Setup=new SetPortDialog();
+    form=new Form();
     connect(Sp,SIGNAL(readyRead()),this,SLOT(ReadData())); //接收到数据处理;
     connect(this,SIGNAL(StartSearch()),this,SLOT(InsertLists()));//开始搜索
 
-        QThread *newthread = new  QThread;
-        this->moveToThread(newthread);
-        newthread->start();
-        qDebug()<<"123123123当前线程："<<newthread->currentThread();
+    //    QThread *newthread = new  QThread;
+    //    this->moveToThread(newthread);
+    //    newthread->start();
+    //    qDebug()<<"123123123当前线程："<<newthread->currentThread();
 }
 void AL808::Temconnect()
 {
@@ -136,7 +137,8 @@ void AL808::Successjudge()
         qDebug()<<"修改成功";
         ReceiveData.clear();
         Readstate=0;
-        emit  StartSearch();
+        if(judgestate())
+            emit  StartSearch();
     }
     if(ReceiveData.contains(ChNAK)){
         qDebug()<<"修改失败";
@@ -194,7 +196,6 @@ double AL808::XORTest()  //异或效验
                 ReadMatch(Buffer,Value.toDouble());
                 Buffer=NULL;
                 emit StartSearch();
-                //                setSL("40");
             }
         }
     }
@@ -202,7 +203,6 @@ double AL808::XORTest()  //异或效验
     {
         qDebug()<<"数据有丢失,请重新获取";
         Buffer=NULL;
-        //        emit StartSearch();
     }
     return 0;
 }
@@ -215,6 +215,8 @@ char AL808::BCC(QByteArray ba) //异或校验过程
     }
     return result;
 }
+
+
 bool AL808::SeekEnd()    //找终止位
 {
     char ChETX=3;   //正文结束
@@ -233,47 +235,56 @@ bool AL808::SeekEnd()    //找终止位
 void AL808::InsertLists()//插入队列
 {
     qDebug()<<"QueueSize："<<queue.size();
-    if(queue.isEmpty())
+    if(queue.size()==0)
     {
         qDebug()<<"<<<<<<<准-------备>>>>>>>>>>>";
         isbusy=false;
-        char ChSTX=4;     //正文开始
-        char ChETX=5;     //正文结束
-        QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);      //命令字符串
-        QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);     //命令字符串
-        QString SPSealedText=QString("%1").arg(ChSTX)+Address+"SP"+ QString("%1").arg(ChETX);      //命令字符串
-        QString SLSealedText=QString("%1").arg(ChSTX)+Address+"SL"+ QString("%1").arg(ChETX);      //命令字符串
-        QString XPSealedText=QString("%1").arg(ChSTX)+Address+"XP"+ QString("%1").arg(ChETX);     //命令字符串
-        QString TISealedText=QString("%1").arg(ChSTX)+Address+"TI"+ QString("%1").arg(ChETX);        //命令字符串
-        QString TDSealedText=QString("%1").arg(ChSTX)+Address+"TD"+ QString("%1").arg(ChETX);     //命令字符串
-        QString CHSealedText=QString("%1").arg(ChSTX)+Address+"CH"+ QString("%1").arg(ChETX);    //命令字符串
-        QString CCSealedText=QString("%1").arg(ChSTX)+Address+"CC"+ QString("%1").arg(ChETX);    //命令字符串
-        QString RGSealedText=QString("%1").arg(ChSTX)+Address+"RG"+ QString("%1").arg(ChETX);    //命令字符串
-        QString HSSealedText=QString("%1").arg(ChSTX)+Address+"HS"+ QString("%1").arg(ChETX);    //命令字符串
-        QString LSSealedText=QString("%1").arg(ChSTX)+Address+"LS"+ QString("%1").arg(ChETX);     //命令字符串
-        QString BPSealedText=QString("%1").arg(ChSTX)+Address+"BP"+ QString("%1").arg(ChETX);     //命令字符串
-        QString HOSealedText=QString("%1").arg(ChSTX)+Address+"HO"+ QString("%1").arg(ChETX);  //命令字符串
 
-        queue.enqueue(PVSealedText);
-        queue.enqueue(OPSealedText);
-        queue.enqueue(SPSealedText);
-        queue.enqueue(SLSealedText);
-        queue.enqueue(XPSealedText);
-        queue.enqueue(TISealedText);
-        queue.enqueue(TDSealedText);
-        queue.enqueue(CHSealedText);
-        queue.enqueue(CCSealedText);
-        queue.enqueue(RGSealedText);
-        queue.enqueue(HSSealedText);
-        queue.enqueue(LSSealedText);
-        queue.enqueue(BPSealedText);
-        queue.enqueue(HOSealedText);
-        QTimer::singleShot(3000,this,SLOT(InsertLists()));
+        QTimer::singleShot(5000,this,SLOT(StartInsert()));
         return;
     }
     isbusy=true;
     SendAllLists(queue.dequeue());
 }
+
+void AL808::StartInsert()
+{
+    char ChSTX=4;     //正文开始
+    char ChETX=5;     //正文结束
+    QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);      //命令字符串
+    QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);     //命令字符串
+    QString SPSealedText=QString("%1").arg(ChSTX)+Address+"SP"+ QString("%1").arg(ChETX);      //命令字符串
+    QString SLSealedText=QString("%1").arg(ChSTX)+Address+"SL"+ QString("%1").arg(ChETX);      //命令字符串
+    QString XPSealedText=QString("%1").arg(ChSTX)+Address+"XP"+ QString("%1").arg(ChETX);     //命令字符串
+    QString TISealedText=QString("%1").arg(ChSTX)+Address+"TI"+ QString("%1").arg(ChETX);        //命令字符串
+    QString TDSealedText=QString("%1").arg(ChSTX)+Address+"TD"+ QString("%1").arg(ChETX);     //命令字符串
+    QString CHSealedText=QString("%1").arg(ChSTX)+Address+"CH"+ QString("%1").arg(ChETX);    //命令字符串
+    QString CCSealedText=QString("%1").arg(ChSTX)+Address+"CC"+ QString("%1").arg(ChETX);    //命令字符串
+    QString RGSealedText=QString("%1").arg(ChSTX)+Address+"RG"+ QString("%1").arg(ChETX);    //命令字符串
+    QString HSSealedText=QString("%1").arg(ChSTX)+Address+"HS"+ QString("%1").arg(ChETX);    //命令字符串
+    QString LSSealedText=QString("%1").arg(ChSTX)+Address+"LS"+ QString("%1").arg(ChETX);     //命令字符串
+    QString BPSealedText=QString("%1").arg(ChSTX)+Address+"BP"+ QString("%1").arg(ChETX);     //命令字符串
+    QString HOSealedText=QString("%1").arg(ChSTX)+Address+"HO"+ QString("%1").arg(ChETX);  //命令字符串
+
+    queue.enqueue(PVSealedText);
+    queue.enqueue(OPSealedText);
+    queue.enqueue(SPSealedText);
+    queue.enqueue(SLSealedText);
+    queue.enqueue(XPSealedText);
+    queue.enqueue(TISealedText);
+    queue.enqueue(TDSealedText);
+    queue.enqueue(CHSealedText);
+    queue.enqueue(CCSealedText);
+    queue.enqueue(RGSealedText);
+    queue.enqueue(HSSealedText);
+    queue.enqueue(LSSealedText);
+    queue.enqueue(BPSealedText);
+    queue.enqueue(HOSealedText);
+    emit StartSearch();
+
+    return;
+}
+
 void AL808::SendAllLists(QString queue)
 {
     qDebug()<<"发送的消息为："<<queue;
@@ -431,32 +442,45 @@ double AL808::getDA()
 {
     return ValDA;
 }
-double AL808::setPV()
+void AL808::setPV(QString data)
 {
-    return 0;
+    QString EditText="PV"+data;
+    QString Addr=Sp_Setup->ErgodicAdress(Sp_Setup->addr);
+    SetContinue(EditText ,Addr);
+    return void();
 }
 
-double AL808::setOP()
+void AL808::setOP(QString data)
 {
-    return 0;
+    QString EditText="OP"+data;
+    QString Addr=Sp_Setup->ErgodicAdress(Sp_Setup->addr);
+    SetContinue(EditText ,Addr);
+    return void();
 }
 
-double AL808::setSP()
+void AL808::setSP(QString data)
 {
-    return 0;
+    QString EditText="SP"+data;
+    QString Addr=Sp_Setup->ErgodicAdress(Sp_Setup->addr);
+    SetContinue(EditText ,Addr);
+    return void();
 }
 
-double AL808::setSL(QString data)
+void AL808::setSL(QString data)
 {
-
     QString EditText="SL"+data;
     QString Addr=Sp_Setup->ErgodicAdress(Sp_Setup->addr);
+    SetContinue(EditText ,Addr);
+    return void();
+}
+
+void AL808::SetContinue(QString EditText ,QString Addr)
+{
     char ChEOT=4;     //传输结束
     char ChSTX=2;     //正文开始
     char ChETX=3;     //正文结束
-    char ChXOR;       //异或校验
+    char ChXOR;         //异或校验
     char Chtemp;
-
     QString Start=QString("%1").arg(ChEOT)+Addr+QString("%1").arg(ChSTX);
     QString SealedText =Start +EditText+QString("%1").arg(ChETX);
     ChXOR=SealedText.at(6).toLatin1();
@@ -481,5 +505,4 @@ double AL808::setSL(QString data)
         queue.enqueue(SealedText);
         qDebug()<<"Size:"<<queue.size();
     }
-    return 0;
 }
