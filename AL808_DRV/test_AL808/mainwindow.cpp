@@ -9,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     al808 = new AL808();
-    connect(this,SIGNAL(groove()),al808,SLOT(ConnectTest()));
     connect(this,SIGNAL(TryConnect()),al808,SLOT(Temconnect()));
 
 //    thread =new QThread();
@@ -49,7 +48,7 @@ void MainWindow::on_pushButton_SetSL_clicked()
     al808->setSL("40.2");
 }
 
-void MainWindow::on_pushButton_Groove_clicked()
+void MainWindow::on_pushButton_ShowForm_clicked()
 {
-    emit groove();
+   al808->ShowForm();
 }

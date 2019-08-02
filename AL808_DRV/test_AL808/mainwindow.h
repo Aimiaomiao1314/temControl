@@ -28,6 +28,8 @@ private slots:
 
     void on_pushButton_SetSL_clicked();
 
+    void on_pushButton_ShowForm_clicked();
+
 private:
     AL808 *al808;
     Ui::MainWindow *ui;

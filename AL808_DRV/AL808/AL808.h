@@ -85,6 +85,7 @@ public:
 
     void Set_Al808Setup();
     int writeData(char *data, int size);
+    void ShowForm();
 
     QSerialPort *Sp;
     SetPortDialog *Sp_Setup;
@@ -99,7 +100,7 @@ private:
 
     double ValPV=0;
     double ValOP=0;
-    double ValSP=0;
+    double ValSP=1;
     double ValSL=0;
     double ValXP=0;
     double ValTI=0;
@@ -143,11 +144,13 @@ private slots:
     char BCC(QByteArray);//异或校验
 
     void StartInsert();
+    void FormSend(Commend);
 
 public slots:
     void Temconnect() override;
     void Temdisconnect() override;
     void ConnectTest();
+    void WaitGetValue();
 protected:
 
 signals:

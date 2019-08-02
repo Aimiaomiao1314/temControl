@@ -6,19 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>508</width>
-    <height>516</height>
+    <width>641</width>
+    <height>461</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QPushButton" name="pushButton_GetData">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>420</y>
+     <width>89</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>获取数据</string>
+   </property>
+  </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>284</width>
+     <x>13</x>
+     <y>10</y>
+     <width>163</width>
      <height>429</height>
     </rect>
    </property>
@@ -32,20 +45,19 @@
     </item>
     <item row="0" column="1">
      <widget class="QLabel" name="label_PV_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="0" column="2">
-     <widget class="QLineEdit" name="lineEdit_PV"/>
-    </item>
-    <item row="0" column="3">
-     <widget class="QPushButton" name="pushButton_PV">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_PV"/>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_OP">
@@ -56,20 +68,19 @@
     </item>
     <item row="1" column="1">
      <widget class="QLabel" name="label_OP_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="1" column="2">
-     <widget class="QLineEdit" name="lineEdit_OP"/>
-    </item>
-    <item row="1" column="3">
-     <widget class="QPushButton" name="pushButton_OP">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_OP"/>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_SP">
@@ -80,20 +91,19 @@
     </item>
     <item row="2" column="1">
      <widget class="QLabel" name="label_SP_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="2" column="2">
-     <widget class="QLineEdit" name="lineEdit_SP"/>
-    </item>
-    <item row="2" column="3">
-     <widget class="QPushButton" name="pushButton_SP">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_SP"/>
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_SL">
@@ -104,20 +114,19 @@
     </item>
     <item row="3" column="1">
      <widget class="QLabel" name="label_SL_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="3" column="2">
-     <widget class="QLineEdit" name="lineEdit_SL"/>
-    </item>
-    <item row="3" column="3">
-     <widget class="QPushButton" name="pushButton_SL">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_SL"/>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_XP">
@@ -128,20 +137,19 @@
     </item>
     <item row="4" column="1">
      <widget class="QLabel" name="label_XP_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="4" column="2">
-     <widget class="QLineEdit" name="lineEdit_XP"/>
-    </item>
-    <item row="4" column="3">
-     <widget class="QPushButton" name="pushButton_XP">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_XP"/>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_TI">
@@ -152,20 +160,19 @@
     </item>
     <item row="5" column="1">
      <widget class="QLabel" name="label_TI_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="5" column="2">
-     <widget class="QLineEdit" name="lineEdit_TI"/>
-    </item>
-    <item row="5" column="3">
-     <widget class="QPushButton" name="pushButton_TI">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_TI"/>
     </item>
     <item row="6" column="0">
      <widget class="QLabel" name="label_TD">
@@ -176,20 +183,19 @@
     </item>
     <item row="6" column="1">
      <widget class="QLabel" name="label_TD_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="6" column="2">
-     <widget class="QLineEdit" name="lineEdit_TD"/>
-    </item>
-    <item row="6" column="3">
-     <widget class="QPushButton" name="pushButton_TD">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_TD"/>
     </item>
     <item row="7" column="0">
      <widget class="QLabel" name="label_CH">
@@ -200,20 +206,19 @@
     </item>
     <item row="7" column="1">
      <widget class="QLabel" name="label_CH_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="7" column="2">
-     <widget class="QLineEdit" name="lineEdit_CH"/>
-    </item>
-    <item row="7" column="3">
-     <widget class="QPushButton" name="pushButton_CH">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_CH"/>
     </item>
     <item row="8" column="0">
      <widget class="QLabel" name="label_CC">
@@ -224,20 +229,19 @@
     </item>
     <item row="8" column="1">
      <widget class="QLabel" name="label_CC_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="8" column="2">
-     <widget class="QLineEdit" name="lineEdit_CC"/>
-    </item>
-    <item row="8" column="3">
-     <widget class="QPushButton" name="pushButton_CC">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_CC"/>
     </item>
     <item row="9" column="0">
      <widget class="QLabel" name="label_RG">
@@ -248,20 +252,19 @@
     </item>
     <item row="9" column="1">
      <widget class="QLabel" name="label_RG_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="9" column="2">
-     <widget class="QLineEdit" name="lineEdit_RG"/>
-    </item>
-    <item row="9" column="3">
-     <widget class="QPushButton" name="pushButton_RG">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_RG"/>
     </item>
     <item row="10" column="0">
      <widget class="QLabel" name="label_HS">
@@ -272,20 +275,19 @@
     </item>
     <item row="10" column="1">
      <widget class="QLabel" name="label_HS_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="10" column="2">
-     <widget class="QLineEdit" name="lineEdit_HS"/>
-    </item>
-    <item row="10" column="3">
-     <widget class="QPushButton" name="pushButton_HS">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_HS"/>
     </item>
     <item row="11" column="0">
      <widget class="QLabel" name="label_LS">
@@ -296,20 +298,19 @@
     </item>
     <item row="11" column="1">
      <widget class="QLabel" name="label_LS_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="11" column="2">
-     <widget class="QLineEdit" name="lineEdit_LS"/>
-    </item>
-    <item row="11" column="3">
-     <widget class="QPushButton" name="pushButton_LS">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_LS"/>
     </item>
     <item row="12" column="0">
      <widget class="QLabel" name="label_BP">
@@ -320,20 +321,19 @@
     </item>
     <item row="12" column="1">
      <widget class="QLabel" name="label_BP_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="12" column="2">
-     <widget class="QLineEdit" name="lineEdit_BP"/>
-    </item>
-    <item row="12" column="3">
-     <widget class="QPushButton" name="pushButton_BP">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_BP"/>
     </item>
     <item row="13" column="0">
      <widget class="QLabel" name="label_HO">
@@ -344,20 +344,19 @@
     </item>
     <item row="13" column="1">
      <widget class="QLabel" name="label_HO_Value">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>0</string>
       </property>
      </widget>
     </item>
     <item row="13" column="2">
-     <widget class="QLineEdit" name="lineEdit_HO"/>
-    </item>
-    <item row="13" column="3">
-     <widget class="QPushButton" name="pushButton_HO">
-      <property name="text">
-       <string>修改</string>
-      </property>
-     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_HO"/>
     </item>
    </layout>
   </widget>

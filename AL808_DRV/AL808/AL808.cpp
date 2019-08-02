@@ -9,38 +9,42 @@
 AL808::AL808()
 {
     struct StrofCmdID pl;
-    pl={TagofCmdID::cmdBP, "BP",ValBP,"故障功率"}; ParameterList.push_back(pl);
+    pl={TagofCmdID::cmdOP, "OP",ValOP,"输出功率"}; ParameterList.push_back(pl);    //主要
+    pl={TagofCmdID::cmdPV, "PV",ValPV,"测量值"}; ParameterList.push_back(pl);
+    pl={TagofCmdID::cmdAL1, "A1",ValA1,"AL1报警值"}; ParameterList.push_back(pl);
+    pl={TagofCmdID::cmdAL2, "A2",ValA2,"AL2报警值"}; ParameterList.push_back(pl);
+    pl={TagofCmdID::cmdHA, "HA",ValHA,"上限报警值"}; ParameterList.push_back(pl);
+    pl={TagofCmdID::cmdLA, "LA",ValLA,"下限报警值"}; ParameterList.push_back(pl);
+    pl={TagofCmdID::cmdDA, "DA",ValDA,"偏差报警"}; ParameterList.push_back(pl);
+
+    pl={TagofCmdID::cmdBP, "BP",ValBP,"故障功率"}; ParameterList.push_back(pl);      //次要
     pl={TagofCmdID::cmdCC, "CC",ValCC,"冷却周期"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdCH, "CH",ValCH,"加热周期"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdHO, "HO",ValHO,"最大功率"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdHS, "HS",ValHS,"最大值"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdLS, "LS",ValLS,"最小值"}; ParameterList.push_back(pl);
-    pl={TagofCmdID::cmdOP, "OP",ValOP,"输出功率"}; ParameterList.push_back(pl);
-    pl={TagofCmdID::cmdPV, "PV",ValPV,"测量值"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdRG, "RG",ValRG,"相关系数"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdSL, "SL",ValSL,"设定值"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdSP, "SP",ValSP,"目标值"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdTD, "TD",ValTD,"微分时间"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdTI, "TI",ValTI,"积分时间"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdXP, "XP",ValXP,"加热比例带"}; ParameterList.push_back(pl);
-    pl={TagofCmdID::cmdAL1, "A1",ValA1,"AL1报警值"}; ParameterList.push_back(pl);
-    pl={TagofCmdID::cmdAL2, "A2",ValA2,"AL2报警值"}; ParameterList.push_back(pl);
-    pl={TagofCmdID::cmdHA, "HA",ValHA,"上限报警值"}; ParameterList.push_back(pl);
-    pl={TagofCmdID::cmdLA, "LA",ValLA,"下限报警值"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdHB, "HB",ValHB,"PID上分离带"}; ParameterList.push_back(pl);
     pl={TagofCmdID::cmdLB, "LB",ValLB,"PID下分离带"}; ParameterList.push_back(pl);
-    pl={TagofCmdID::cmdDA, "DA",ValDA,"偏差报警"}; ParameterList.push_back(pl);
 
     Sp=new QSerialPort();
     Sp_Setup=new SetPortDialog();
     form=new Form();
     connect(Sp,SIGNAL(readyRead()),this,SLOT(ReadData())); //接收到数据处理;
     connect(this,SIGNAL(StartSearch()),this,SLOT(InsertLists()));//开始搜索
+    connect(form,SIGNAL(GetValue()),this,SLOT(WaitGetValue()));//向Form传递数据
+    connect(form,SIGNAL(SendChange(struct Commend)),this,SLOT( FormSend(Commend)));//form修改信号改变
 
     //    QThread *newthread = new  QThread;
     //    this->moveToThread(newthread);
     //    newthread->start();
     //    qDebug()<<"123123123当前线程："<<newthread->currentThread();
+
 }
 void AL808::Temconnect()
 {
@@ -113,9 +117,29 @@ int AL808::writeData(char *data, int size)//用于发送数据
     return len;
 }
 
+
+
 void AL808::ConnectTest()
 {
     qDebug()<<"DLL槽连接成功";
+}
+
+void AL808::WaitGetValue()
+{
+    form->PV=ValPV;
+    form->SP=ValSP;
+    form->SL=ValSL;
+    form->XP=ValXP;
+    form->TI=ValTI;
+    form->TD=ValTD;
+    form->CH=ValCH;
+    form->CC=ValCC;
+    form->RG=ValRG;
+    form->HS=ValHS;
+    form->LS=ValLS;
+    form->BP=ValBP;
+    form->HO=ValHO;
+    form->SetValue();
 }
 void AL808::ReadData()
 {
@@ -237,6 +261,7 @@ void AL808::InsertLists()//插入队列
     qDebug()<<"QueueSize："<<queue.size();
     if(queue.size()==0)
     {
+        emit form->GetValue();
         qDebug()<<"<<<<<<<准-------备>>>>>>>>>>>";
         isbusy=false;
 
@@ -251,18 +276,18 @@ void AL808::StartInsert()
 {
     char ChSTX=4;     //正文开始
     char ChETX=5;     //正文结束
-    QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);      //命令字符串
-    QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);     //命令字符串
-    QString SPSealedText=QString("%1").arg(ChSTX)+Address+"SP"+ QString("%1").arg(ChETX);      //命令字符串
+    QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);     //命令字符串
+    QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);    //命令字符串
+    QString SPSealedText=QString("%1").arg(ChSTX)+Address+"SP"+ QString("%1").arg(ChETX);     //命令字符串
     QString SLSealedText=QString("%1").arg(ChSTX)+Address+"SL"+ QString("%1").arg(ChETX);      //命令字符串
     QString XPSealedText=QString("%1").arg(ChSTX)+Address+"XP"+ QString("%1").arg(ChETX);     //命令字符串
     QString TISealedText=QString("%1").arg(ChSTX)+Address+"TI"+ QString("%1").arg(ChETX);        //命令字符串
-    QString TDSealedText=QString("%1").arg(ChSTX)+Address+"TD"+ QString("%1").arg(ChETX);     //命令字符串
-    QString CHSealedText=QString("%1").arg(ChSTX)+Address+"CH"+ QString("%1").arg(ChETX);    //命令字符串
+    QString TDSealedText=QString("%1").arg(ChSTX)+Address+"TD"+ QString("%1").arg(ChETX);    //命令字符串
+    QString CHSealedText=QString("%1").arg(ChSTX)+Address+"CH"+ QString("%1").arg(ChETX);   //命令字符串
     QString CCSealedText=QString("%1").arg(ChSTX)+Address+"CC"+ QString("%1").arg(ChETX);    //命令字符串
     QString RGSealedText=QString("%1").arg(ChSTX)+Address+"RG"+ QString("%1").arg(ChETX);    //命令字符串
     QString HSSealedText=QString("%1").arg(ChSTX)+Address+"HS"+ QString("%1").arg(ChETX);    //命令字符串
-    QString LSSealedText=QString("%1").arg(ChSTX)+Address+"LS"+ QString("%1").arg(ChETX);     //命令字符串
+    QString LSSealedText=QString("%1").arg(ChSTX)+Address+"LS"+ QString("%1").arg(ChETX);      //命令字符串
     QString BPSealedText=QString("%1").arg(ChSTX)+Address+"BP"+ QString("%1").arg(ChETX);     //命令字符串
     QString HOSealedText=QString("%1").arg(ChSTX)+Address+"HO"+ QString("%1").arg(ChETX);  //命令字符串
 
@@ -281,9 +306,9 @@ void AL808::StartInsert()
     queue.enqueue(BPSealedText);
     queue.enqueue(HOSealedText);
     emit StartSearch();
-
     return;
 }
+
 
 void AL808::SendAllLists(QString queue)
 {
@@ -299,48 +324,48 @@ bool AL808::judgestate()
 void AL808::ReadMatch(QByteArray data , double Value)
 {
     if(data.contains("PV"))
-        ValPV=Value;return;
-    if(data.contains("OP"))
-        ValOP=Value;return;
+        ValPV=Value;
+    if (data.contains("OP"))
+        ValOP=Value;
     if(data.contains("SP"))
-        ValSP=Value;return;
+        ValSP=Value;
     if(data.contains("SL"))
-        ValPV=Value;return;
+        ValSL=Value;
     if(data.contains("XP"))
-        ValPV=Value;return;
+        ValXP=Value;
     if(data.contains("TI"))
-        ValPV=Value;return;
+        ValTI=Value;
     if(data.contains("TD"))
-        ValPV=Value;return;
+        ValTD=Value;
     if(data.contains("HO"))
-        ValPV=Value;return;
+        ValHO=Value;
     if(data.contains("CH"))
-        ValPV=Value;return;
+        ValCH=Value;
     if(data.contains("CC"))
-        ValPV=Value;return;
+        ValCC=Value;
     if(data.contains("RG"))
-        ValPV=Value;return;
+        ValRG=Value;
     if(data.contains("HS"))
-        ValPV=Value;return;
+        ValHS=Value;
     if(data.contains("LS"))
-        ValLS=Value;return;
+        ValLS=Value;
     if(data.contains("BP"))
-        ValBP=Value;return;
+        ValBP=Value;
     if(data.contains("A1"))
-        ValA1=Value;return;
+        ValA1=Value;
     if(data.contains("A2"))
-        ValA2=Value;return;
+        ValA2=Value;
     if(data.contains("HA"))
-        ValHA=Value;return;
+        ValHA=Value;
     if(data.contains("LA"))
-        ValLA=Value;return;
+        ValLA=Value;
     if(data.contains("HB"))
-        ValHB=Value;return;
+        ValHB=Value;
     if(data.contains("LB"))
-        ValLB=Value;return;
+        ValLB=Value;
     if(data.contains("DA"))
-        ValDA=Value;return;
-
+        ValDA=Value;
+    return;
 }
 
 
@@ -505,4 +530,16 @@ void AL808::SetContinue(QString EditText ,QString Addr)
         queue.enqueue(SealedText);
         qDebug()<<"Size:"<<queue.size();
     }
+}
+void AL808::ShowForm()
+{
+    form->show();
+}
+
+void AL808::FormSend(Commend com)
+{
+    QString EditText=com.id+QString::number(com.value);
+    QString Addr=Sp_Setup->ErgodicAdress(Sp_Setup->addr);
+    SetContinue(EditText ,Addr);
+    return void();
 }
