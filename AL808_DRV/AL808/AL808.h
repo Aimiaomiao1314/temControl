@@ -121,6 +121,7 @@ private:
     double ValDA=0;
     QString Adress=NULL;
     int Readstate=0;
+    int SendTimes=0;
 
     QVector <struct StrofCmdID> ParameterList;
     QQueue<QString> queue;

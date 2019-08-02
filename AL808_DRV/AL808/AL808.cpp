@@ -168,7 +168,7 @@ void AL808::Successjudge()
         qDebug()<<"修改失败";
         ReceiveData.clear();
         Readstate=0;
-        //        StartSearch();
+        StartSearch();
     }
 }
 
@@ -262,10 +262,10 @@ void AL808::InsertLists()//插入队列
     if(queue.size()==0)
     {
         emit form->GetValue();
-        qDebug()<<"<<<<<<<准-------备>>>>>>>>>>>";
+        qDebug()<<"<<<<<<<<<<<<<<<<<<<<<准-------备>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         isbusy=false;
 
-        QTimer::singleShot(5000,this,SLOT(StartInsert()));
+        QTimer::singleShot(3000,this,SLOT(StartInsert()));
         return;
     }
     isbusy=true;
@@ -274,39 +274,57 @@ void AL808::InsertLists()//插入队列
 
 void AL808::StartInsert()
 {
+
     char ChSTX=4;     //正文开始
     char ChETX=5;     //正文结束
-    QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);     //命令字符串
-    QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);    //命令字符串
-    QString SPSealedText=QString("%1").arg(ChSTX)+Address+"SP"+ QString("%1").arg(ChETX);     //命令字符串
-    QString SLSealedText=QString("%1").arg(ChSTX)+Address+"SL"+ QString("%1").arg(ChETX);      //命令字符串
-    QString XPSealedText=QString("%1").arg(ChSTX)+Address+"XP"+ QString("%1").arg(ChETX);     //命令字符串
-    QString TISealedText=QString("%1").arg(ChSTX)+Address+"TI"+ QString("%1").arg(ChETX);        //命令字符串
-    QString TDSealedText=QString("%1").arg(ChSTX)+Address+"TD"+ QString("%1").arg(ChETX);    //命令字符串
-    QString CHSealedText=QString("%1").arg(ChSTX)+Address+"CH"+ QString("%1").arg(ChETX);   //命令字符串
-    QString CCSealedText=QString("%1").arg(ChSTX)+Address+"CC"+ QString("%1").arg(ChETX);    //命令字符串
-    QString RGSealedText=QString("%1").arg(ChSTX)+Address+"RG"+ QString("%1").arg(ChETX);    //命令字符串
-    QString HSSealedText=QString("%1").arg(ChSTX)+Address+"HS"+ QString("%1").arg(ChETX);    //命令字符串
-    QString LSSealedText=QString("%1").arg(ChSTX)+Address+"LS"+ QString("%1").arg(ChETX);      //命令字符串
-    QString BPSealedText=QString("%1").arg(ChSTX)+Address+"BP"+ QString("%1").arg(ChETX);     //命令字符串
-    QString HOSealedText=QString("%1").arg(ChSTX)+Address+"HO"+ QString("%1").arg(ChETX);  //命令字符串
+    if(SendTimes!=0)
+    {
+        QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);     //命令字符串
+        QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);    //命令字符串
 
-    queue.enqueue(PVSealedText);
-    queue.enqueue(OPSealedText);
-    queue.enqueue(SPSealedText);
-    queue.enqueue(SLSealedText);
-    queue.enqueue(XPSealedText);
-    queue.enqueue(TISealedText);
-    queue.enqueue(TDSealedText);
-    queue.enqueue(CHSealedText);
-    queue.enqueue(CCSealedText);
-    queue.enqueue(RGSealedText);
-    queue.enqueue(HSSealedText);
-    queue.enqueue(LSSealedText);
-    queue.enqueue(BPSealedText);
-    queue.enqueue(HOSealedText);
-    emit StartSearch();
-    return;
+        queue.enqueue(PVSealedText);
+        queue.enqueue(OPSealedText);
+        if(SendTimes==4)
+            SendTimes=0;
+        else
+            SendTimes++;
+        emit StartSearch();
+        return;
+    }
+    else
+    {
+        QString PVSealedText=QString("%1").arg(ChSTX)+Address+"PV"+ QString("%1").arg(ChETX);     //命令字符串
+        QString OPSealedText=QString("%1").arg(ChSTX)+Address+"OP"+ QString("%1").arg(ChETX);    //命令字符串
+        QString SPSealedText=QString("%1").arg(ChSTX)+Address+"SP"+ QString("%1").arg(ChETX);     //命令字符串
+        QString SLSealedText=QString("%1").arg(ChSTX)+Address+"SL"+ QString("%1").arg(ChETX);      //命令字符串
+        QString XPSealedText=QString("%1").arg(ChSTX)+Address+"XP"+ QString("%1").arg(ChETX);     //命令字符串
+        QString TISealedText=QString("%1").arg(ChSTX)+Address+"TI"+ QString("%1").arg(ChETX);        //命令字符串
+        QString TDSealedText=QString("%1").arg(ChSTX)+Address+"TD"+ QString("%1").arg(ChETX);    //命令字符串
+        QString CHSealedText=QString("%1").arg(ChSTX)+Address+"CH"+ QString("%1").arg(ChETX);   //命令字符串
+        QString CCSealedText=QString("%1").arg(ChSTX)+Address+"CC"+ QString("%1").arg(ChETX);    //命令字符串
+        QString RGSealedText=QString("%1").arg(ChSTX)+Address+"RG"+ QString("%1").arg(ChETX);    //命令字符串
+        QString HSSealedText=QString("%1").arg(ChSTX)+Address+"HS"+ QString("%1").arg(ChETX);    //命令字符串
+        QString LSSealedText=QString("%1").arg(ChSTX)+Address+"LS"+ QString("%1").arg(ChETX);      //命令字符串
+        QString BPSealedText=QString("%1").arg(ChSTX)+Address+"BP"+ QString("%1").arg(ChETX);     //命令字符串
+        QString HOSealedText=QString("%1").arg(ChSTX)+Address+"HO"+ QString("%1").arg(ChETX);  //命令字符串
+        queue.enqueue(SPSealedText);
+        queue.enqueue(SLSealedText);
+        queue.enqueue(XPSealedText);
+        queue.enqueue(TISealedText);
+        queue.enqueue(TDSealedText);
+        queue.enqueue(CHSealedText);
+        queue.enqueue(CCSealedText);
+        queue.enqueue(RGSealedText);
+        queue.enqueue(HSSealedText);
+        queue.enqueue(LSSealedText);
+        queue.enqueue(BPSealedText);
+        queue.enqueue(HOSealedText);
+        queue.enqueue(PVSealedText);
+        queue.enqueue(OPSealedText);
+        SendTimes++;
+        emit StartSearch();
+        return;
+    }
 }
 
 
