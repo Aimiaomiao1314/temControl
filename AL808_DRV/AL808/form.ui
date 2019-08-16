@@ -26,339 +26,629 @@
     <string>获取数据</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QLabel" name="label_PV">
    <property name="geometry">
     <rect>
-     <x>13</x>
-     <y>10</y>
-     <width>163</width>
-     <height>429</height>
+     <x>14</x>
+     <y>11</y>
+     <width>24</width>
+     <height>16</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_PV">
-      <property name="text">
-       <string>PV：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_PV_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_PV"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_OP">
-      <property name="text">
-       <string>OP：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="label_OP_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_OP"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_SP">
-      <property name="text">
-       <string>SP：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLabel" name="label_SP_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_SP"/>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_SL">
-      <property name="text">
-       <string>SL：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QLabel" name="label_SL_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_SL"/>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_XP">
-      <property name="text">
-       <string>XP：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QLabel" name="label_XP_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_XP"/>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_TI">
-      <property name="text">
-       <string>TI：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QLabel" name="label_TI_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_TI"/>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_TD">
-      <property name="text">
-       <string>TD：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLabel" name="label_TD_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_TD"/>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label_CH">
-      <property name="text">
-       <string>CH：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="1">
-     <widget class="QLabel" name="label_CH_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_CH"/>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_CC">
-      <property name="text">
-       <string>CC：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QLabel" name="label_CC_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_CC"/>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_RG">
-      <property name="text">
-       <string>RG：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1">
-     <widget class="QLabel" name="label_RG_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_RG"/>
-    </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="label_HS">
-      <property name="text">
-       <string>HS：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1">
-     <widget class="QLabel" name="label_HS_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_HS"/>
-    </item>
-    <item row="11" column="0">
-     <widget class="QLabel" name="label_LS">
-      <property name="text">
-       <string>LS：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="1">
-     <widget class="QLabel" name="label_LS_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_LS"/>
-    </item>
-    <item row="12" column="0">
-     <widget class="QLabel" name="label_BP">
-      <property name="text">
-       <string>BP：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="1">
-     <widget class="QLabel" name="label_BP_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_BP"/>
-    </item>
-    <item row="13" column="0">
-     <widget class="QLabel" name="label_HO">
-      <property name="text">
-       <string>HO：</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="1">
-     <widget class="QLabel" name="label_HO_Value">
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_HO"/>
-    </item>
-   </layout>
+   <property name="text">
+    <string>PV：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_PV_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>11</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_OP">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>41</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OP：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_OP_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>41</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_SP">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>71</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SP：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_SP_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>71</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_SL">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>101</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SL：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_SL_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>101</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_XP">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>131</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>XP：</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_SL">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>101</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>999.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_XP">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>131</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>999.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_XP_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>131</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_TI_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>161</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_TI">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>161</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>2000.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_TI">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>161</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TI：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_TD">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>191</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TD：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_TD_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>191</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_TD">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>191</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>-999.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>1000.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_CH_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>221</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_CH">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>221</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CH：</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_CH">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>221</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>-999.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>240.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_CC">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>251</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CC：</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_CC">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>251</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>-999.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>1000.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_CC_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>251</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_RG_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>281</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_RG">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>281</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>RG：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_HS">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>311</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>HS：</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_RG">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>281</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>-999.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>1000.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_HS_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>311</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_HS">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>311</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>499.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_LS_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>341</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_LS">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>341</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>LS：</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_LS">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>341</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>1000.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_BP">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>371</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>BP：</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_BP">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>371</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>0.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_BP_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>371</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_HO">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>401</y>
+     <width>24</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>HO：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_HO_Value">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>401</y>
+     <width>40</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_HO">
+   <property name="geometry">
+    <rect>
+     <x>115</x>
+     <y>401</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <double>0.000000000000000</double>
+   </property>
+   <property name="maximum">
+    <double>100.000000000000000</double>
+   </property>
   </widget>
  </widget>
  <resources/>

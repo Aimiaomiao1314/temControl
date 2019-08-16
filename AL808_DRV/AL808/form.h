@@ -41,12 +41,6 @@ private slots:
 
     void on_pushButton_GetData_clicked();
 
-    void on_doubleSpinBox_PV_editingFinished();
-
-    void on_doubleSpinBox_OP_editingFinished();
-
-    void on_doubleSpinBox_SP_editingFinished();
-
     void on_doubleSpinBox_SL_editingFinished();
 
     void on_doubleSpinBox_XP_editingFinished();

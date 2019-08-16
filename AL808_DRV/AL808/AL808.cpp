@@ -143,36 +143,33 @@ void AL808::WaitGetValue()
 }
 void AL808::ReadData()
 {
+    qDebug()<<"到达数据："<<ReceiveData;
     if(Readstate==0)
+    {
         ReceiveData=Sp->readAll();           //读取所有数据
-    CommandDistinction();
-
+        CommandDistinction();
+    }
     if(Readstate==1)
+    {
         ReceiveData=Sp->readAll();
-    Successjudge();
-
+        Successjudge();
+    }
+    return ;
 }
 void AL808::Successjudge()
 {
 
-    char ChACK=6;   //收到通知
-    char ChNAK=15;  //拒绝接受
-    if(ReceiveData.contains(ChACK)){
+    char ChACK=0x6;   //收到通知
+    char ChNAK=0x15;  //拒绝接受
+
+    if(ReceiveData.contains(ChACK))
         qDebug()<<"修改成功";
-        ReceiveData.clear();
-        Readstate=0;
-        if(judgestate())
-            emit  StartSearch();
-    }
-    if(ReceiveData.contains(ChNAK)){
+
+    if(ReceiveData.contains(ChNAK))
         qDebug()<<"修改失败";
-        ReceiveData.clear();
-        Readstate=0;
-        StartSearch();
-    }
+
+    Readstate=0;
 }
-
-
 void AL808::CommandDistinction()
 {
 
@@ -185,6 +182,7 @@ void AL808::CommandDistinction()
 bool AL808::SeekStart() //寻找起始位的位置并截取从起始位开始到末尾
 {
     char ChSTX=2;   //正文开始
+
     //    char ChACK=6;   //收到通知
     //    char ChNAK=15;  //拒绝接受
     for(int i=0;i<ReceiveData.length();i++)
@@ -219,7 +217,7 @@ double AL808::XORTest()  //异或效验
                 qDebug()<<"最终数值："<<Value;
                 ReadMatch(Buffer,Value.toDouble());
                 Buffer=NULL;
-                emit StartSearch();
+                emit StartSearch(); //OK
             }
         }
     }
@@ -258,17 +256,17 @@ bool AL808::SeekEnd()    //找终止位
 
 void AL808::InsertLists()//插入队列
 {
-    qDebug()<<"QueueSize："<<queue.size();
     if(queue.size()==0)
     {
         emit form->GetValue();
-        qDebug()<<"<<<<<<<<<<<<<<<<<<<<<准-------备>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+        qDebug()<<"<<<<<<<<<<<<<<<<<<<<<等--------待>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         isbusy=false;
 
         QTimer::singleShot(3000,this,SLOT(StartInsert()));
         return;
     }
     isbusy=true;
+    qDebug()<<"清空数组中 ， 剩余："<<queue.size();
     SendAllLists(queue.dequeue());
 }
 
@@ -307,6 +305,7 @@ void AL808::StartInsert()
         QString LSSealedText=QString("%1").arg(ChSTX)+Address+"LS"+ QString("%1").arg(ChETX);      //命令字符串
         QString BPSealedText=QString("%1").arg(ChSTX)+Address+"BP"+ QString("%1").arg(ChETX);     //命令字符串
         QString HOSealedText=QString("%1").arg(ChSTX)+Address+"HO"+ QString("%1").arg(ChETX);  //命令字符串
+
         queue.enqueue(SPSealedText);
         queue.enqueue(SLSealedText);
         queue.enqueue(XPSealedText);
@@ -321,6 +320,7 @@ void AL808::StartInsert()
         queue.enqueue(HOSealedText);
         queue.enqueue(PVSealedText);
         queue.enqueue(OPSealedText);
+        qDebug()<<"数组检测2："<<queue.size();
         SendTimes++;
         emit StartSearch();
         return;
@@ -536,7 +536,7 @@ void AL808::SetContinue(QString EditText ,QString Addr)
     QByteArray byte = SealedText.toLatin1();
     char *ch=byte.data();
 
-    if(!judgestate())
+    if(!judgestate()) //
     {
         Readstate=1;
         writeData(ch,byte.size());
@@ -544,9 +544,7 @@ void AL808::SetContinue(QString EditText ,QString Addr)
     }
     else
     {
-        qDebug()<<"before size:"<<queue.size();
         queue.enqueue(SealedText);
-        qDebug()<<"Size:"<<queue.size();
     }
 }
 void AL808::ShowForm()

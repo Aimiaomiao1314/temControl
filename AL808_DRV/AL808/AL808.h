@@ -100,7 +100,7 @@ private:
 
     double ValPV=0;
     double ValOP=0;
-    double ValSP=1;
+    double ValSP=0;
     double ValSL=0;
     double ValXP=0;
     double ValTI=0;
